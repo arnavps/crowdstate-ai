@@ -3,6 +3,7 @@ import numpy as np
 import librosa
 import torch
 from ultralytics import YOLO
+from model import get_model
 import time
 from collections import deque
 from typing import Dict, List, Optional
@@ -12,15 +13,39 @@ class CrowdEngine:
         # Initialize YOLOv8
         self.model = YOLO(model_path)
         
-        # State Vector History for Volatility (Delta) calculation
-        # 10-second window at ~1fps = 10 samples
-        self.rho_history = deque(maxlen=10)
-        self.last_update_time = time.time()
+        # Initialize LSTM Predictor
+        self.predictor = get_model()
         
-        # Current State Vector
-        self.rho = 0.0   # Physical Density
-        self.sigma = 0.0 # Sensory Load
-        self.delta = 0.0 # Volatility
+        # State Vector History for Volatility and Prediction
+        # 50 samples for prediction input
+        self.history = deque(maxlen=50)
+        self.rho_history = deque(maxlen=10) # For delta calculation
+        
+        self.rho = 0.0
+        self.sigma = 0.0
+        self.delta = 0.0
+        self.predictions: List[Dict[str, float]] = []
+
+    def update_history(self):
+        self.history.append([self.rho, self.sigma, self.delta])
+
+    def predict_future(self):
+        """
+        Use LSTM to predict the next 10 state vectors based on history.
+        """
+        if len(self.history) < 10: # Minimum history needed for mock
+            return []
+            
+        # Convert history to tensor (mocking the input for the skeleton)
+        input_data = torch.tensor([list(self.history)], dtype=torch.float32)
+        with torch.no_grad():
+            preds = self.predictor(input_data).numpy()[0]
+            
+        self.predictions = [
+            {"rho": float(p[0]), "sigma": float(p[1]), "delta": float(p[2])}
+            for p in preds
+        ]
+        return self.predictions
 
     def process_video_frame(self, frame: np.ndarray) -> float:
         """
@@ -82,12 +107,16 @@ class CrowdEngine:
         else:
             self.delta = 0.0
 
-    def get_state_vector(self) -> Dict[str, float]:
+    def get_state_vector(self) -> Dict:
         """
-        Return the current 3-State Vector.
+        Return the current 3-State Vector including 10-step predictions.
         """
         return {
             "rho": round(float(self.rho), 4),
             "sigma": round(float(self.sigma), 4),
-            "delta": round(float(self.delta), 4)
+            "delta": round(float(self.delta), 4),
+            "predictions": [
+                {k: round(v, 4) for k, v in p.items()}
+                for p in self.predictions
+            ]
         }

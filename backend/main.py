@@ -30,6 +30,10 @@ async def websocket_endpoint(websocket: WebSocket):
             engine.rho_history.append((asyncio.get_event_loop().time(), engine.rho))
             engine.calculate_delta()
             
+            # Prediction Logic integration
+            engine.update_history()
+            engine.predict_future()
+            
             state = engine.get_state_vector()
             await websocket.send_text(json.dumps(state))
             await asyncio.sleep(1) # 1Hz update rate
