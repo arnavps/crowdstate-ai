@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+ultralytics
+librosa
+torch
+pandas
