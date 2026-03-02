@@ -91,6 +91,7 @@ class CrowdEngine:
     def calculate_delta(self):
         """
         Calculate Volatility (delta) as the derivative of rho over the history window.
+        Implements Phase 4: Rate of State Deviation logic.
         """
         if len(self.rho_history) < 2:
             self.delta = 0.0
@@ -103,9 +104,30 @@ class CrowdEngine:
         dt = times[-1] - times[0]
         if dt > 0:
             dv = values[-1] - values[0]
+            # Absolute rate of change
             self.delta = abs(dv / dt)
         else:
             self.delta = 0.0
+
+    def get_alerts(self) -> List[Dict]:
+        """
+        Phase 4 Success Metrics: Identify risks 180s before they escalate.
+        Returns active alerts based on state vector thresholds.
+        """
+        alerts = []
+        # Normalization constraints (empirical urban baseline)
+        norm_rho = min(1.0, self.rho / 5.0)
+        norm_sigma = min(1.0, self.sigma / 120.0)
+        norm_delta = min(1.0, self.delta / 0.5)
+
+        if norm_rho > 0.85:
+            alerts.append({"type": "CRITICAL", "msg": "Systemic Flow Collapse Imminent", "code": "RHO_MAX"})
+        if norm_sigma > 0.70:
+            alerts.append({"type": "WARNING", "msg": "Environmental Stress Peak", "code": "SIGMA_HIGH"})
+        if norm_delta > 0.40:
+            alerts.append({"type": "FORECAST", "msg": "Turbulence Detected (180s Window)", "code": "DELTA_SPIKE"})
+            
+        return alerts
 
     def get_state_vector(self) -> Dict:
         """
@@ -128,5 +150,6 @@ class CrowdEngine:
                     "delta": round(min(1.0, p["delta"] / 0.5), 4)
                 }
                 for p in self.predictions
-            ]
+            ],
+            "alerts": self.get_alerts()
         }

@@ -34,7 +34,13 @@ async def websocket_endpoint(websocket: WebSocket):
             engine.update_history()
             engine.predict_future()
             
+            # Phase 4: AuraPath Routing Logic
+            # Sensory Load (Sigma) > 0.60 triggers automatic rerouting
+            aurapath_active = engine.sigma > 0.60
+            
             state = engine.get_state_vector()
+            state["aurapath_active"] = aurapath_active
+            
             await websocket.send_text(json.dumps(state))
             await asyncio.sleep(1) # 1Hz update rate
     except WebSocketDisconnect:
