@@ -110,13 +110,23 @@ class CrowdEngine:
     def get_state_vector(self) -> Dict:
         """
         Return the current 3-State Vector including 10-step predictions.
+        Data is normalized to [0, 1] range for B2B analytics.
         """
+        # Normalization constraints (empirical urban baseline)
+        norm_rho = min(1.0, self.rho / 5.0)  # Max density ~5 people/m2
+        norm_sigma = min(1.0, self.sigma / 120.0) # Max sensory load ~120dB variance
+        norm_delta = min(1.0, self.delta / 0.5) # Max volatility spike 0.5/s
+
         return {
-            "rho": round(float(self.rho), 4),
-            "sigma": round(float(self.sigma), 4),
-            "delta": round(float(self.delta), 4),
+            "rho": round(float(norm_rho), 4),
+            "sigma": round(float(norm_sigma), 4),
+            "delta": round(float(norm_delta), 4),
             "predictions": [
-                {k: round(v, 4) for k, v in p.items()}
+                {
+                    "rho": round(min(1.0, p["rho"] / 5.0), 4),
+                    "sigma": round(min(1.0, p["sigma"] / 120.0), 4),
+                    "delta": round(min(1.0, p["delta"] / 0.5), 4)
+                }
                 for p in self.predictions
             ]
         }
