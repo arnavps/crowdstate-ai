@@ -3,4 +3,7 @@ uvicorn
 ultralytics
 librosa
 torch
+torchvision
 pandas
+numpy
+opencv-python
