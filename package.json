@@ -1,0 +1,13 @@
+{
+    "name": "crowdstate-ai",
+    "version": "1.0.0",
+    "description": "CrowdState AI - Tri-Axial Crowd Prediction Engine",
+    "scripts": {
+        "dev:frontend": "cd frontend && npm run dev",
+        "dev:backend": "cd backend && uvicorn main:app --reload --port 8000",
+        "dev": "npx concurrently \"npm run dev:frontend\" \"npm run dev:backend\""
+    },
+    "devDependencies": {
+        "concurrently": "^8.2.2"
+    }
+}
