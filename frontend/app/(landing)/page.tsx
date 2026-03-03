@@ -53,14 +53,13 @@ export default function LandingPage() {
                     </div>
                 </nav>
 
-                <div className="flex-1 max-w-[1400px] mx-auto w-full grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-x-16 items-center px-12 relative z-20 pt-16">
+                <div className="flex-1 max-w-[1400px] mx-auto w-full grid grid-cols-1 lg:grid-cols-[1.6fr_0.8fr] gap-x-12 items-center px-12 xl:pl-40 relative z-20 pt-16">
                     {/* Left Side: The Protocol (Narrative) */}
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, ease: "easeOut" }}
                     >
-                        {/* Tactical Badge */}
                         {/* Tactical Badge */}
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 mb-6">
                             <div className="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_8px_#22C55E]" />
@@ -100,76 +99,54 @@ export default function LandingPage() {
                             initial={{ opacity: 0, scale: 0.95, x: 20 }}
                             animate={{ opacity: 1, scale: 1, x: 0 }}
                             transition={{ duration: 0.8, delay: 0.2 }}
-                            className="glass-premium p-10 rounded-[32px] relative overflow-hidden"
+                            className="glass-premium p-8 rounded-[24px] relative overflow-hidden flex flex-col max-w-[400px]"
                         >
-                            {/* Card Content Top Section */}
-                            <div className="p-10">
-                                <div className="flex items-center gap-4 mb-10 text-white">
-                                    <div className="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center border border-orange-500/30">
-                                        <ShieldAlert size={24} className="text-[#F97316]" />
-                                    </div>
-                                    <div className="flex flex-col">
-                                        <h3 className="text-lg font-bold">Predictive Scan</h3>
-                                        <p className="text-[10px] text-white/40 uppercase tracking-widest font-bold">State Synchronizer</p>
-                                    </div>
+                            <div className="flex items-center gap-3 mb-8 text-white">
+                                <div className="w-10 h-10 bg-orange-500/20 rounded-xl flex items-center justify-center border border-orange-500/30">
+                                    <ShieldAlert size={20} className="text-[#F97316]" />
                                 </div>
-
-                                <div className="space-y-8 mb-10">
-                                    <div className="space-y-2">
-                                        <div className="flex justify-between text-[10px] font-bold uppercase tracking-widest text-white/40">
-                                            <span>Network Stability</span>
-                                            <span className="text-[#F97316]">92%</span>
-                                        </div>
-                                        <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden border border-white/5">
-                                            <motion.div
-                                                initial={{ width: 0 }}
-                                                animate={{ width: "92%" }}
-                                                transition={{ duration: 1.5, delay: 0.5 }}
-                                                className="h-full bg-[#F97316] shadow-[0_0_12px_rgba(249,115,22,0.6)]"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div className="grid grid-cols-3 gap-4">
-                                        {[
-                                            { label: "Nodes", value: "12.4k", color: "text-white" },
-                                            { label: "Latency", value: "0.8ms", color: "text-white" },
-                                            { label: "Up-time", value: "99.9%", color: "text-white" }
-                                        ].map((stat, i) => (
-                                            <div key={i} className="space-y-1">
-                                                <p className="text-[9px] uppercase tracking-widest text-white/30 font-bold leading-none">{stat.label}</p>
-                                                <p className={`text-xl font-black ${stat.color} leading-none pt-1`}>{stat.value}</p>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                {/* Status Pills */}
-                                <div className="flex gap-3 mt-10">
-                                    <div className="px-3 py-1 rounded-full bg-green-500/10 border border-green-500/30 text-[9px] font-bold text-green-500 uppercase tracking-widest">Live Now</div>
-                                    <div className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 uppercase tracking-widest">Forensic.V2</div>
-                                    <div className="px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/30 text-[9px] font-bold text-orange-500 uppercase tracking-widest">AI Powered</div>
+                                <div className="flex flex-col">
+                                    <h3 className="text-md font-bold">Predictive Scan</h3>
+                                    <p className="text-[9px] text-white/40 uppercase tracking-widest font-bold">State Synchronizer</p>
                                 </div>
                             </div>
 
-                            {/* Card Secondary Section: Layered Footer */}
-                            <div className="glass-secondary p-8 px-10">
-                                <p className="text-[9px] uppercase tracking-widest text-white/30 font-bold mb-4">Built For & Trusted By</p>
-                                <div className="flex items-center justify-between gap-6 opacity-40 grayscale contrast-125">
-                                    <div className="flex items-center gap-2">
-                                        <Lock size={12} />
-                                        <span className="text-[10px] font-bold tracking-tighter">FIN-SEC ALLIANCE</span>
+                            <div className="space-y-6 mb-8">
+                                <div className="space-y-2">
+                                    <div className="flex justify-between text-[10px] font-bold uppercase tracking-widest text-white/40">
+                                        <span>Network Stability</span>
+                                        <span className="text-[#F97316]">92%</span>
                                     </div>
-                                    <div className="flex items-center gap-2">
-                                        <Activity size={12} />
-                                        <span className="text-[10px] font-bold tracking-tighter">BIO-OPS GLOBAL</span>
+                                    <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden border border-white/5">
+                                        <motion.div
+                                            initial={{ width: 0 }}
+                                            animate={{ width: "92%" }}
+                                            transition={{ duration: 1.5, delay: 0.5 }}
+                                            className="h-full bg-[#F97316] shadow-[0_0_12px_rgba(249,115,22,0.6)]"
+                                        />
                                     </div>
-                                    <div className="flex items-center gap-2">
-                                        <div className="w-3 h-3 border border-current rounded-sm flex items-center justify-center p-0.5">
-                                            <div className="w-full h-full bg-current rounded-sm" />
+                                </div>
+
+                                <div className="grid grid-cols-3 gap-3">
+                                    {[
+                                        { label: "Nodes", value: "12.4k" },
+                                        { label: "Latency", value: "0.8ms" },
+                                        { label: "Up-time", value: "99.9%" }
+                                    ].map((stat, i) => (
+                                        <div key={i} className="space-y-0.5">
+                                            <p className="text-[8px] uppercase tracking-widest text-white/30 font-bold leading-none">{stat.label}</p>
+                                            <p className="text-lg font-black text-white leading-none pt-1">{stat.value}</p>
                                         </div>
-                                        <span className="text-[10px] font-bold tracking-tighter">TECH-NEXIS</span>
-                                    </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className="flex gap-2">
+                                <div className="px-2 py-0.5 rounded-full bg-green-500/10 border border-green-500/30 text-[8px] font-bold text-green-500 uppercase tracking-widest">Live</div>
+                                <div className="px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-[8px] font-bold text-white/40 uppercase tracking-widest">Forensic.V2</div>
+                                <div className="px-2 py-0.5 rounded-full bg-orange-500/10 border border-orange-500/30 text-[8px] font-bold text-orange-500 uppercase tracking-widest flex items-center gap-1">
+                                    <div className="w-1 h-1 rounded-full bg-orange-500" />
+                                    AI
                                 </div>
                             </div>
                         </motion.div>
@@ -221,10 +198,10 @@ export default function LandingPage() {
                         </motion.div>
                     </div>
                 </div>
-            </section>
+            </section >
 
             {/* State Vector Assembly - Scroll Reveal */}
-            <section id="methodology" className="relative py-32 px-8 z-10 border-t border-card-border bg-background">
+            < section id="methodology" className="relative py-32 px-8 z-10 border-t border-card-border bg-background" >
                 <div className="max-w-7xl mx-auto">
                     <div className="label mb-6 text-brand-teal text-sm">Protocol_Vector_Assembly</div>
                     <h2 className="text-5xl font-bold mb-16 tracking-tighter text-brand-navy">Tri-Axial State Engineering</h2>
@@ -256,10 +233,10 @@ export default function LandingPage() {
                         ))}
                     </div>
                 </div>
-            </section>
+            </section >
 
             {/* Privacy Seal */}
-            <section id="trust" className="relative py-24 px-8 z-10 text-center">
+            < section id="trust" className="relative py-24 px-8 z-10 text-center" >
                 <motion.div
                     initial={{ scale: 0.9, opacity: 0 }}
                     whileInView={{ scale: 1, opacity: 1 }}
@@ -279,7 +256,7 @@ export default function LandingPage() {
                         Our proprietary edge-processing architecture ensures that no Personally Identifiable Information is ever stored or transmitted. We process pure human-density mathematics, not identities.
                     </p>
                 </motion.div>
-            </section>
+            </section >
 
             <footer className="relative py-24 px-8 border-t border-card-border z-10 bg-white backdrop-blur-md">
                 <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
@@ -302,6 +279,6 @@ export default function LandingPage() {
                     <div className="text-[11px] font-mono opacity-20 text-gray-500">© 2026 CROWDSTATE AI GROUP | FORENSIC DIVISION</div>
                 </div>
             </footer>
-        </div>
+        </div >
     );
 }
