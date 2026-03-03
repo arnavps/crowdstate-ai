@@ -15,7 +15,7 @@ export default function LandingPage() {
     return (
         <div className="min-h-screen bg-background text-foreground font-sans selection:bg-brand-teal selection:text-white overflow-x-hidden">
             {/* Cinematic Hero Section: Murph Inspired */}
-            <section className="relative min-h-screen flex flex-col bg-[#050B0A] text-white selection:bg-orange-500/30 overflow-hidden">
+            <section id="hero" className="relative min-h-screen flex flex-col bg-[#050B0A] text-white selection:bg-orange-500/30 overflow-hidden">
                 {/* Visual Engine: Cinematic Atmosphere */}
                 <div className="absolute inset-0 z-0 text-white">
                     {/* Dark Station Mesh Background */}
@@ -41,12 +41,12 @@ export default function LandingPage() {
                 {/* Floating Pill Navigation Header */}
                 <nav className="absolute top-8 left-0 right-0 z-50 flex justify-center px-4">
                     <div className="pill-nav">
-                        <span className="pill-nav-item active">Home</span>
-                        <span className="pill-nav-item">Nodes</span>
-                        <span className="pill-nav-item">Forensic AI</span>
-                        <span className="pill-nav-item">State Map</span>
-                        <span className="pill-nav-item">Deployment</span>
-                        <span className="pill-nav-item text-white">Dashboard</span>
+                        <Link href="#hero" className="pill-nav-item active">Home</Link>
+                        <Link href="#impact" className="pill-nav-item">Nodes</Link>
+                        <Link href="#impact" className="pill-nav-item">Forensic AI</Link>
+                        <Link href="#methodology" className="pill-nav-item">State Map</Link>
+                        <Link href="#trust" className="pill-nav-item">Deployment</Link>
+                        <Link href="/dashboard" className="pill-nav-item text-white">Dashboard</Link>
                         <div className="w-8 h-8 rounded-full bg-white/10 border border-white/20 ml-2 overflow-hidden flex items-center justify-center">
                             <Activity size={14} className="text-white/40" />
                         </div>
