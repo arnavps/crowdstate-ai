@@ -99,13 +99,23 @@ export default function AuraPathMapPage() {
                                     }`}
                             >
                                 <div className="flex items-center gap-3">
-                                    <Navigation size={18} className={selectedPath === "standard" ? "text-brand-teal" : "text-[#94A3B8]"} />
+                                    <Navigation size={18} className={selectedPath === "standard" ? "text-brand-orange" : "text-[#94A3B8]"} />
                                     <div className="text-left">
-                                        <p className={`text-[11px] font-bold uppercase tracking-widest ${selectedPath === "standard" ? "text-[#1E293B]" : "text-[#64748B]"}`}>Standard Path</p>
-                                        <p className="text-[10px] font-mono text-[#94A3B8]">12m Est • 92% Efficiency</p>
+                                        <p className={`text-[11px] font-bold uppercase tracking-widest ${selectedPath === "standard" ? "text-[#1E293B]" : "text-[#64748B]"}`}>Route A: Standard Path</p>
+                                        <p className="text-[10px] font-mono text-[#94A3B8]">12m Est • 92% Density (Busy)</p>
                                     </div>
                                 </div>
                             </button>
+
+                            <div className="w-full p-4 rounded-xl border border-[#E2E8F0] bg-red-50/30 opacity-60 cursor-not-allowed">
+                                <div className="flex items-center gap-3">
+                                    <Navigation size={18} className="text-red-400" />
+                                    <div className="text-left">
+                                        <p className="text-[11px] font-bold uppercase tracking-widest text-red-500/60">Route B: High Σ Distress</p>
+                                        <p className="text-[10px] font-mono text-red-500/40 italic">Acoustic Texture Alarm (Screech)</p>
+                                    </div>
+                                </div>
+                            </div>
 
                             <button
                                 onClick={() => setSelectedPath("aura")}
@@ -115,8 +125,8 @@ export default function AuraPathMapPage() {
                                 <div className="flex items-center gap-3">
                                     <Wind size={18} className={selectedPath === "aura" ? "text-brand-teal" : "text-[#94A3B8]"} />
                                     <div className="text-left">
-                                        <p className={`text-[11px] font-bold uppercase tracking-widest ${selectedPath === "aura" ? "text-brand-teal font-black" : "text-[#64748B]"}`}>AuraPath™</p>
-                                        <p className="text-[10px] font-mono text-brand-teal/70 font-bold underline decoration-dotted">15m Est • Sensory Isolated</p>
+                                        <p className={`text-[11px] font-bold uppercase tracking-widest ${selectedPath === "aura" ? "text-brand-teal font-black" : "text-[#64748B]"}`}>Route C: AuraPath™</p>
+                                        <p className="text-[10px] font-mono text-brand-teal/70 font-bold underline decoration-dotted">15m Est • Sensory Isolated (Calm)</p>
                                     </div>
                                 </div>
                                 {selectedPath === "aura" && (
@@ -130,15 +140,15 @@ export default function AuraPathMapPage() {
 
                     <div className="p-6 bg-[#1E293B] rounded-2xl shadow-xl flex flex-col gap-6">
                         <div className="flex items-center justify-between">
-                            <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">Sensory Load Analysis</h3>
+                            <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">State Vector Fusion</h3>
                             <TrendingDown size={14} className="text-brand-teal" />
                         </div>
 
                         <div className="space-y-5">
                             {[
-                                { label: "Acoustic Load (Σ)", val: "0.28ms", ref: "Screech Threshold" },
-                                { label: "Luminal Variance", val: "L4", ref: "Standard Ambient" },
-                                { label: "Density Forecast", val: "ρ-Low", ref: "Next 10m" }
+                                { label: "Density (ρ)", val: "0.142", ref: "Ghost State", color: "bg-green-500" },
+                                { label: "Sensory (Σ)", val: "0.088", ref: "Silent Flow", color: "bg-brand-teal" },
+                                { label: "Volatility (Δ)", val: "0.021", ref: "Absolute Stable", color: "bg-brand-teal" }
                             ].map((item, i) => (
                                 <div key={i} className="space-y-2">
                                     <div className="flex justify-between items-center">
@@ -146,8 +156,9 @@ export default function AuraPathMapPage() {
                                         <span className="text-[11px] font-mono text-white font-bold">{item.val}</span>
                                     </div>
                                     <div className="h-1 bg-white/10 rounded-full overflow-hidden">
-                                        <div className="h-full bg-brand-teal w-1/4 rounded-full" />
+                                        <div className={`h-full ${item.color} w-1/5 rounded-full`} />
                                     </div>
+                                    <p className="text-[8px] font-bold text-white/30 uppercase tracking-[0.2em]">{item.ref}</p>
                                 </div>
                             ))}
                         </div>

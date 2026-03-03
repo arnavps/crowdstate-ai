@@ -78,8 +78,8 @@ export default function DashboardPage() {
                 key={p}
                 onClick={() => setPersona(p)}
                 className={`px-4 py-2 rounded-lg text-[10px] font-bold uppercase tracking-wider transition-all ${persona === p
-                    ? "bg-white text-brand-teal shadow-sm border border-[#E2E8F0]"
-                    : "text-[#94A3B8] hover:text-[#475569]"
+                  ? "bg-white text-brand-teal shadow-sm border border-[#E2E8F0]"
+                  : "text-[#94A3B8] hover:text-[#475569]"
                   }`}
               >
                 {p === "commuter" ? "Commuter" : p === "manager" ? "Station Mgr" : "1st Responder"}
@@ -175,28 +175,37 @@ export default function DashboardPage() {
                 {/* Metrics Grid: JetBrains Mono Rigor */}
                 <div className="grid grid-cols-1 gap-6">
                   {[
-                    { label: "Density (ρ)", val: currentVector.rho, tech: "YOLOv8 Edge" },
-                    { label: "Sensory (Σ)", val: currentVector.sigma, tech: "Librosa FFT" },
-                    { label: "Volatility (Δ)", val: currentVector.delta, tech: "LSTM Temporal" }
-                  ].map((m, i) => (
-                    <div key={i} className="p-6 bg-white border border-[#E2E8F0] rounded-xl flex items-center justify-between group hover:border-brand-teal/50 transition-all hover:shadow-md">
-                      <div>
-                        <div className="text-[10px] font-bold text-[#94A3B8] uppercase tracking-[0.2em] mb-2">{m.label}</div>
-                        <div className="text-[40px] font-mono font-bold text-[#1E293B] tracking-tighter group-hover:text-brand-teal transition-colors leading-none">
-                          {m.val.toFixed(3)}
+                    { label: "Density (ρ)", val: selectedNode.id === 'BETA_02' ? 0.124 : currentVector.rho, tech: "YOLOv8 Edge" },
+                    { label: "Sensory (Σ)", val: selectedNode.id === 'BETA_02' ? 0.882 : currentVector.sigma, tech: "Librosa FFT" },
+                    { label: "Volatility (Δ)", val: selectedNode.id === 'BETA_02' ? 0.051 : currentVector.delta, tech: "LSTM Temporal" }
+                  ].map((m, i) => {
+                    const isSensoryAlarm = selectedNode.id === 'BETA_02' && m.label.includes("Sensory") && persona === "commuter";
+                    const isDensityGhost = selectedNode.id === 'BETA_02' && m.label.includes("Density");
+
+                    return (
+                      <div key={i} className={`p-6 bg-white border border-[#E2E8F0] rounded-xl flex items-center justify-between group transition-all hover:shadow-md ${isSensoryAlarm ? 'border-brand-orange bg-orange-50/50' : 'hover:border-brand-teal/50'
+                        }`}>
+                        <div>
+                          <div className="text-[10px] font-bold text-[#94A3B8] uppercase tracking-[0.2em] mb-2">{m.label}</div>
+                          <div className={`text-[40px] font-mono font-bold tracking-tighter transition-colors leading-none ${isSensoryAlarm ? 'text-brand-orange' : isDensityGhost ? 'text-green-500' : 'text-[#1E293B] group-hover:text-brand-teal'
+                            }`}>
+                            {m.val.toFixed(3)}
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <div className={`inline-block px-1.5 py-0.5 rounded text-[9px] font-mono font-bold border mb-3 uppercase ${isSensoryAlarm ? 'bg-brand-orange/10 text-brand-orange border-brand-orange/20' : 'bg-brand-teal/5 text-brand-teal border-brand-teal/10'
+                            }`}>
+                            {m.tech}
+                          </div>
+                          <div className={`text-[10px] font-bold flex items-center gap-1.5 justify-end ${isSensoryAlarm ? 'text-brand-orange animate-pulse' : 'text-green-500'
+                            }`}>
+                            <div className={`w-1.5 h-1.5 rounded-full ${isSensoryAlarm ? 'bg-brand-orange' : 'bg-green-500'}`} />
+                            {isSensoryAlarm ? 'INACCURATE_QUIET_ALARM' : 'NOMINAL'}
+                          </div>
                         </div>
                       </div>
-                      <div className="text-right">
-                        <div className="inline-block px-1.5 py-0.5 rounded text-[9px] font-mono font-bold bg-brand-teal/5 text-brand-teal border border-brand-teal/10 mb-3 uppercase">
-                          {m.tech}
-                        </div>
-                        <div className="text-[10px] font-bold text-green-500 flex items-center gap-1.5 justify-end">
-                          <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
-                          NOMINAL
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
 

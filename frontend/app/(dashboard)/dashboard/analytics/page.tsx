@@ -91,9 +91,9 @@ export default function AnalyticsPage() {
                             />
                         </svg>
 
-                        <div className="absolute top-0 right-0 p-4 bg-orange-50/80 backdrop-blur-sm border border-orange-100 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity">
-                            <p className="text-[10px] font-bold text-orange-600 uppercase mb-1">Anomaly Detected</p>
-                            <p className="text-[12px] font-mono font-bold text-orange-900">Δ+0.42 @ T+180s</p>
+                        <div className="absolute top-0 right-0 p-4 bg-orange-50/80 backdrop-blur-sm border border-orange-100 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity shadow-lg">
+                            <p className="text-[10px] font-bold text-orange-600 uppercase mb-1">Kinetic Vibe Shift Detected</p>
+                            <p className="text-[12px] font-mono font-bold text-orange-900">Δ+0.42 (Kinetic Tracking Spike)</p>
                         </div>
                     </div>
 
