@@ -58,7 +58,19 @@ export default function LandingPage() {
             </nav>
 
             {/* Hero Section */}
-            <section className="relative pt-48 pb-32 px-8">
+            <section className="relative pt-48 pb-32 px-8 overflow-hidden">
+                {/* Hero Background Image - Solar Blend */}
+                <div className="absolute inset-0 z-0 select-none">
+                    <Image
+                        src="/bg-img.jpg"
+                        alt="Infrastructure Backdrop"
+                        fill
+                        priority
+                        className="object-cover opacity-[0.07] grayscale contrast-125"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-white via-white/40 to-white" />
+                </div>
+
                 <motion.div style={{ y: y1 }} className="max-w-6xl mx-auto text-center relative z-10">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -96,28 +108,28 @@ export default function LandingPage() {
             </section>
 
             {/* Impact Section: JetBrains Mono Numbers */}
-            <section id="impact" className="relative py-32 px-8 z-10 border-y border-card-border bg-white/50 dark:bg-background/40 backdrop-blur-sm">
+            <section id="impact" className="relative py-24 px-8 z-10 border-y border-card-border bg-white/50 backdrop-blur-sm">
                 <div className="max-w-7xl mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                         <motion.div
                             initial={{ opacity: 0, x: -50 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8 }}
-                            className="p-12 bg-white border border-card-border rounded-3xl flex flex-col justify-center shadow-xl group hover:border-brand-teal/30 transition-colors"
+                            className="p-10 bg-white border border-card-border rounded-3xl flex flex-col justify-center shadow-lg group hover:border-brand-teal/30 transition-colors"
                         >
-                            <span className="text-[80px] md:text-[140px] font-mono font-bold text-brand-navy leading-none mb-6 -ml-4 tracking-tighter">180<span className="text-4xl md:text-6xl text-brand-teal">s</span></span>
-                            <h3 className="text-3xl font-bold uppercase tracking-widest mb-4">Warning Window</h3>
-                            <p className="text-gray-500 font-medium text-lg">Pre-emptive anomaly detection 3 minutes before systemic flow collapse occurs.</p>
+                            <span className="text-6xl md:text-8xl font-mono font-bold text-brand-navy leading-none mb-4 -ml-2 tracking-tighter">180<span className="text-2xl md:text-4xl text-brand-teal">s</span></span>
+                            <h3 className="text-2xl font-bold uppercase tracking-widest mb-3">Warning Window</h3>
+                            <p className="text-gray-500 font-medium text-base">Pre-emptive anomaly detection 3 minutes before systemic flow collapse occurs.</p>
                         </motion.div>
                         <motion.div
                             initial={{ opacity: 0, x: 50 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8 }}
-                            className="p-12 bg-white border border-card-border rounded-3xl flex flex-col justify-center shadow-xl group hover:border-brand-teal/30 transition-colors"
+                            className="p-10 bg-white border border-card-border rounded-3xl flex flex-col justify-center shadow-lg group hover:border-brand-teal/30 transition-colors"
                         >
-                            <span className="text-[80px] md:text-[140px] font-mono font-bold text-brand-navy leading-none mb-6 -ml-4 tracking-tighter">9<span className="text-4xl md:text-6xl text-brand-teal">%</span></span>
-                            <h3 className="text-3xl font-bold uppercase tracking-widest mb-4">Efficiency Gain</h3>
-                            <p className="text-gray-500 font-medium text-lg">Quantifiable operational recovery via AuraPath sensory-weighted load balancing.</p>
+                            <span className="text-6xl md:text-8xl font-mono font-bold text-brand-navy leading-none mb-4 -ml-2 tracking-tighter">9<span className="text-2xl md:text-4xl text-brand-teal">%</span></span>
+                            <h3 className="text-2xl font-bold uppercase tracking-widest mb-3">Efficiency Gain</h3>
+                            <p className="text-gray-500 font-medium text-base">Quantifiable operational recovery via AuraPath sensory-weighted load balancing.</p>
                         </motion.div>
                     </div>
                 </div>
@@ -159,23 +171,23 @@ export default function LandingPage() {
             </section>
 
             {/* Privacy Seal */}
-            <section id="trust" className="relative py-40 px-8 z-10 text-center">
+            <section id="trust" className="relative py-24 px-8 z-10 text-center">
                 <motion.div
                     initial={{ scale: 0.9, opacity: 0 }}
                     whileInView={{ scale: 1, opacity: 1 }}
-                    className="inline-block p-16 bg-white border border-card-border rounded-3xl shadow-2xl max-w-4xl"
+                    className="inline-block p-10 bg-white border border-card-border rounded-3xl shadow-xl max-w-3xl"
                 >
-                    <div className="flex items-center justify-center gap-6 mb-8">
-                        <Lock size={40} className="text-brand-teal" />
-                        <h2 className="text-4xl font-bold uppercase tracking-[0.3em] text-brand-navy">Privacy Seal</h2>
+                    <div className="flex items-center justify-center gap-4 mb-6">
+                        <Lock size={32} className="text-brand-teal" />
+                        <h2 className="text-2xl font-bold uppercase tracking-[0.3em] text-brand-navy">Privacy Seal</h2>
                     </div>
-                    <div className="text-[40px] md:text-[64px] font-mono font-bold mb-6 tracking-tighter text-brand-navy leading-tight">
+                    <div className="text-3xl md:text-5xl font-mono font-bold mb-4 tracking-tighter text-brand-navy leading-tight">
                         Zero-PII | Anonymized
                     </div>
-                    <div className="text-2xl md:text-3xl font-black text-brand-teal uppercase tracking-[0.2em] mb-10 opacity-90">
+                    <div className="text-xl md:text-2xl font-black text-brand-teal uppercase tracking-[0.2em] mb-8 opacity-90">
                         Behavioral Vectors Only
                     </div>
-                    <p className="text-gray-500 max-w-2xl mx-auto font-medium text-lg leading-relaxed">
+                    <p className="text-gray-500 max-w-xl mx-auto font-medium text-base leading-relaxed">
                         Our proprietary edge-processing architecture ensures that no Personally Identifiable Information is ever stored or transmitted. We process pure human-density mathematics, not identities.
                     </p>
                 </motion.div>
