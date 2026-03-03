@@ -20,6 +20,7 @@ import StationNodeMap from "@/components/StationNodeMap";
 export default function DashboardPage() {
   const [selectedNode, setSelectedNode] = useState<{ id: string, name: string } | null>(null);
   const [timeIndex, setTimeIndex] = useState(0);
+  const [persona, setPersona] = useState<"commuter" | "manager" | "responder">("commuter");
 
   const { lastJsonMessage, readyState } = useWebSocket("ws://localhost:8000/ws/stream", {
     shouldReconnect: (closeEvent) => true,
@@ -32,7 +33,22 @@ export default function DashboardPage() {
     predictions: Array<{ rho: number; sigma: number; delta: number }>;
   } || { rho: 0, sigma: 0, delta: 0, predictions: [] };
 
-  const currentVector = timeIndex === 0 ? data : (data.predictions[timeIndex - 1] || data);
+  // Simulated Persona Weighting
+  const getPersonaAdjustedValue = (val: number, type: "rho" | "sigma" | "delta") => {
+    const weights = {
+      commuter: { rho: 1.2, sigma: 1.5, delta: 0.8 },
+      manager: { rho: 1.5, sigma: 1.0, delta: 1.2 },
+      responder: { rho: 1.0, sigma: 0.8, delta: 2.0 }
+    };
+    return val * weights[persona][type];
+  };
+
+  const baseVector = timeIndex === 0 ? data : (data.predictions[timeIndex - 1] || data);
+  const currentVector = {
+    rho: getPersonaAdjustedValue(baseVector.rho, "rho"),
+    sigma: getPersonaAdjustedValue(baseVector.sigma, "sigma"),
+    delta: getPersonaAdjustedValue(baseVector.delta, "delta"),
+  };
 
   const connectionStatus = ({
     0: 'connecting',
@@ -43,18 +59,33 @@ export default function DashboardPage() {
 
   return (
     <div className="flex flex-col gap-8 h-full">
-      <header className="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-4 border-b border-[#E2E8F0]">
-        <div>
-          <div className="flex items-center gap-2 mb-2">
+      <header className="flex flex-col xl:flex-row xl:items-end justify-between gap-8 pb-4 border-b border-[#E2E8F0]">
+        <div className="flex flex-col gap-4">
+          <div className="flex items-center gap-2">
             <div className="relative flex h-2 w-2">
               <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${connectionStatus === 'open' ? 'bg-green-400' : 'bg-red-400'} opacity-75`}></span>
               <span className={`relative inline-flex rounded-full h-2 w-2 ${connectionStatus === 'open' ? 'bg-green-500' : 'bg-red-500'}`}></span>
             </div>
-            <span className="text-[10px] text-[#94A3B8] font-bold uppercase tracking-[0.2em]">Global Network Status: Active</span>
+            <span className="text-[10px] text-[#94A3B8] font-bold uppercase tracking-[0.2em]">Regional Command Hub</span>
           </div>
           <h1 className="text-4xl font-bold uppercase tracking-tighter text-[#1E293B]">
-            Regional Control Center
+            Stakeholder Overview
           </h1>
+
+          <div className="flex items-center gap-1 bg-[#F1F5F9] p-1 rounded-xl w-fit border border-[#E2E8F0]">
+            {(["commuter", "manager", "responder"] as const).map((p) => (
+              <button
+                key={p}
+                onClick={() => setPersona(p)}
+                className={`px-4 py-2 rounded-lg text-[10px] font-bold uppercase tracking-wider transition-all ${persona === p
+                    ? "bg-white text-brand-teal shadow-sm border border-[#E2E8F0]"
+                    : "text-[#94A3B8] hover:text-[#475569]"
+                  }`}
+              >
+                {p === "commuter" ? "Commuter" : p === "manager" ? "Station Mgr" : "1st Responder"}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="bg-white border border-[#E2E8F0] px-6 py-4 rounded-xl flex items-center gap-8 shadow-sm">
@@ -64,8 +95,10 @@ export default function DashboardPage() {
           </div>
           <div className="w-[1px] h-8 bg-[#E2E8F0]" />
           <div className="flex flex-col">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-[#94A3B8] mb-1">Processing Mode</span>
-            <span className="font-mono text-sm font-bold text-[#1E293B]">Forensic v1.02</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-[#94A3B8] mb-1">Stakeholder Meta</span>
+            <span className="font-mono text-sm font-bold text-brand-orange">
+              {persona === "commuter" ? "Sensory-First" : persona === "manager" ? "Density-First" : "Urgency-First"}
+            </span>
           </div>
         </div>
       </header>
