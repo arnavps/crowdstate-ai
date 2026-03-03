@@ -53,19 +53,14 @@ export default function LandingPage() {
                     </div>
                 </nav>
 
-                <div className="flex-1 max-w-[1400px] mx-auto w-full grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-x-12 items-center px-12 xl:pl-20 relative z-20 pt-40 pb-20">
+                <div className="flex-1 max-w-[1400px] mx-auto w-full grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-x-24 items-center px-12 xl:pl-20 relative z-20 pt-40 pb-20">
                     {/* Left Side: The Protocol (Narrative) */}
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, ease: "easeOut" }}
+                        className="md:-translate-x-8"
                     >
-                        {/* Tactical Badge */}
-                        <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 mb-6">
-                            <div className="w-1 h-1 rounded-full bg-green-500 shadow-[0_0_8px_#22C55E]" />
-                            <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-white/50">Forensic x Technexis v1.02</span>
-                        </div>
-
                         <h1 className="text-4xl md:text-[72px] font-black leading-[1.1] tracking-tight mb-10 font-sans max-w-4xl">
                             <span className="text-[#F97316] glow-text-orange mb-1 block tracking-[-0.04em]">CROWDSTATE</span>
                             The Liquid Stability Protocol
@@ -91,7 +86,7 @@ export default function LandingPage() {
                     </motion.div>
 
                     {/* Right Side: The Forensic Architecture */}
-                    <div className="flex flex-col gap-6">
+                    <div className="flex flex-col gap-6 md:translate-x-8">
                         {/* Main Glass Card */}
                         <motion.div
                             initial={{ opacity: 0, scale: 0.95, x: 20 }}
