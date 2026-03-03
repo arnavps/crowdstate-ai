@@ -53,7 +53,7 @@ export default function LandingPage() {
                     </div>
                 </nav>
 
-                <div className="flex-1 max-w-[1400px] mx-auto w-full grid grid-cols-1 lg:grid-cols-[1.6fr_0.8fr] gap-x-12 items-center px-12 xl:pl-40 relative z-20 pt-16">
+                <div className="flex-1 max-w-[1400px] mx-auto w-full grid grid-cols-1 lg:grid-cols-[1.6fr_0.8fr] gap-x-12 items-center px-12 xl:pl-40 relative z-20 pt-32">
                     {/* Left Side: The Protocol (Narrative) */}
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
@@ -61,12 +61,12 @@ export default function LandingPage() {
                         transition={{ duration: 1, ease: "easeOut" }}
                     >
                         {/* Tactical Badge */}
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 mb-6">
-                            <div className="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_8px_#22C55E]" />
-                            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/50">Forensic x Technexis v1.02</span>
+                        <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 mb-6">
+                            <div className="w-1 h-1 rounded-full bg-green-500 shadow-[0_0_8px_#22C55E]" />
+                            <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-white/50">Forensic x Technexis v1.02</span>
                         </div>
 
-                        <h1 className="text-6xl md:text-[80px] font-black leading-[0.95] tracking-tight mb-8 font-sans">
+                        <h1 className="text-5xl md:text-[72px] font-black leading-[0.95] tracking-tight mb-8 font-sans">
                             <span className="text-[#F97316] glow-text-orange mb-1 block tracking-[-0.04em]">CROWDSTATE</span>
                             The Liquid<br />
                             Stability<br />
