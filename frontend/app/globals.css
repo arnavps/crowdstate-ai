@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+:root {
+  --background: #F8FAFC;
+  --foreground: #1E293B;
+  --card-bg: #FFFFFF;
+  --card-border: #E2E8F0;
+  --accent: #0891B2;
+  --accent-teal: #0891B2;
+  --accent-orange: #F97316;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card-bg: var(--card-bg);
+  --color-card-border: var(--card-border);
+  --color-brand-navy: #1E293B;
+  --color-brand-teal: #0891B2;
+  --color-brand-orange: #F97316;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* Solar Mode (Light) - Default */
+:root {
+  --background: #F8FAFC;
+  --foreground: #1E293B;
+  --card-bg: #FFFFFF;
+  --card-border: #E2E8F0;
+}
+
+/* Lunar Mode (Dark) */
+.dark {
+  --background: #0F172A;
+  --foreground: #F8FAFC;
+  --card-bg: #1E293B;
+  --card-border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  background-image:
+    linear-gradient(var(--card-border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--card-border) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.hero-title {
+  @apply text-[48px] font-bold tracking-tight leading-tight;
+  letter-spacing: -0.02em;
+}
+
+.metric-value {
+  @apply text-[96px] font-light leading-none;
+  font-family: var(--font-jetbrains-mono);
+}
+
+.label {
+  @apply text-[12px] uppercase font-bold tracking-[0.1em] opacity-60;
+}
+
+.radar-glow {
+  filter: drop-shadow(0 0 30px rgba(249, 115, 22, 0.4));
+  transition: all 0.3s ease;
+}
+
+.radar-glow:hover {
+  filter: drop-shadow(0 0 50px rgba(249, 115, 22, 0.8));
+  transform: scale(1.02);
+}
+
+.inner-glow-hover:hover {
+  box-shadow: inset 0 0 20px rgba(8, 145, 178, 0.1);
+}
+
+@keyframes pulse-teal {
+  0% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.4;
+  }
+}
+
+.animate-pulse-teal {
+  animation: pulse-teal 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes ticker {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-ticker {
+  animation: ticker 30s linear infinite;
+}
+
+.grid-8 {
+  @apply gap-4 p-6;
+  /* 16px gap, 24px padding using tailwind closest or inline style */
+}
