@@ -20,7 +20,7 @@ export default function LandingPage() {
                 <div className="absolute inset-0 z-0 text-white">
                     {/* Dark Station Mesh Background */}
                     {/* Dark Station Mesh Background - Visibility 70% */}
-                    <div className="absolute inset-0 opacity-70 contrast-[1.2] brightness-75 mix-blend-screen">
+                    <div className="absolute inset-0 opacity-70 contrast-[1.2] brightness-75 mix-blend-screen [mask-image:linear-gradient(to_bottom,black_70%,transparent_100%)]">
                         <Image
                             src="/hero-img.png"
                             alt="Forensic Hub Mesh"
@@ -53,7 +53,7 @@ export default function LandingPage() {
                     </div>
                 </nav>
 
-                <div className="flex-1 max-w-[1400px] mx-auto w-full grid grid-cols-1 lg:grid-cols-[1.6fr_0.8fr] gap-x-12 items-center px-12 xl:pl-40 relative z-20 pt-32">
+                <div className="flex-1 max-w-[1400px] mx-auto w-full grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-x-12 items-center px-12 xl:pl-20 relative z-20 pt-40 pb-20">
                     {/* Left Side: The Protocol (Narrative) */}
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
@@ -66,14 +66,12 @@ export default function LandingPage() {
                             <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-white/50">Forensic x Technexis v1.02</span>
                         </div>
 
-                        <h1 className="text-5xl md:text-[72px] font-black leading-[0.95] tracking-tight mb-8 font-sans">
+                        <h1 className="text-4xl md:text-[72px] font-black leading-[1.1] tracking-tight mb-10 font-sans max-w-4xl">
                             <span className="text-[#F97316] glow-text-orange mb-1 block tracking-[-0.04em]">CROWDSTATE</span>
-                            The Liquid<br />
-                            Stability<br />
-                            Protocol
+                            The Liquid Stability Protocol
                         </h1>
 
-                        <p className="text-lg md:text-[20px] text-white/50 mb-12 font-medium leading-[1.6] max-w-lg">
+                        <p className="text-lg md:text-[20px] text-white/50 mb-14 font-medium leading-[1.6] max-w-2xl">
                             Real-time forensic synchronization. No lag, no wasted compute. Your city equals your network. Meet <b>Murph</b>, your state-engine companion.
                         </p>
 
