@@ -19,7 +19,8 @@ export default function LandingPage() {
                 {/* Visual Engine: Cinematic Atmosphere */}
                 <div className="absolute inset-0 z-0 text-white">
                     {/* Dark Station Mesh Background */}
-                    <div className="absolute inset-0 opacity-20 contrast-[1.2] brightness-50 mix-blend-overlay">
+                    {/* Dark Station Mesh Background - Visibility 70% */}
+                    <div className="absolute inset-0 opacity-70 contrast-[1.2] brightness-75 mix-blend-screen">
                         <Image
                             src="/hero-img.png"
                             alt="Forensic Hub Mesh"
@@ -30,7 +31,8 @@ export default function LandingPage() {
                     </div>
 
                     {/* Central Radiant Glow (Orange) */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] glow-orange opacity-40 mix-blend-screen pointer-events-none" />
+                    {/* Central Radiant Glow (Orange) - Softened to 20% */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] glow-orange opacity-20 mix-blend-screen pointer-events-none" />
 
                     {/* Subtle Teal Beams */}
                     <div className="absolute -top-40 left-1/4 w-[600px] h-[600px] glow-teal opacity-10 animate-pulse-slow" />
@@ -51,7 +53,7 @@ export default function LandingPage() {
                     </div>
                 </nav>
 
-                <div className="flex-1 max-w-[1400px] mx-auto w-full grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-x-20 items-center px-12 relative z-20 pt-20">
+                <div className="flex-1 max-w-[1400px] mx-auto w-full grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-x-16 items-center px-12 relative z-20 pt-16">
                     {/* Left Side: The Protocol (Narrative) */}
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
@@ -59,13 +61,14 @@ export default function LandingPage() {
                         transition={{ duration: 1, ease: "easeOut" }}
                     >
                         {/* Tactical Badge */}
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 mb-8">
+                        {/* Tactical Badge */}
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 mb-6">
                             <div className="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_8px_#22C55E]" />
-                            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/60">Forensic x Technexis v1.02</span>
+                            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/50">Forensic x Technexis v1.02</span>
                         </div>
 
-                        <h1 className="text-8xl md:text-[110px] font-black leading-[0.85] tracking-tight mb-8 font-sans">
-                            <span className="text-[#F97316] glow-text-orange mb-2 block tracking-[-0.04em]">CROWDSTATE</span>
+                        <h1 className="text-6xl md:text-[80px] font-black leading-[0.95] tracking-tight mb-8 font-sans">
+                            <span className="text-[#F97316] glow-text-orange mb-1 block tracking-[-0.04em]">CROWDSTATE</span>
                             The Liquid<br />
                             Stability<br />
                             Protocol
