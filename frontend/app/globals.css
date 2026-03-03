@@ -108,7 +108,36 @@ body {
   animation: ticker 30s linear infinite;
 }
 
-.grid-8 {
-  @apply gap-4 p-6;
-  /* 16px gap, 24px padding using tailwind closest or inline style */
+.glass-premium {
+  @apply bg-white/70 backdrop-blur-2xl border border-white/20 shadow-2xl;
+}
+
+@layer utilities {
+  .animate-ripple {
+    animation: ripple 4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.soft-shadow {
+  box-shadow: 0 40px 100px -20px rgba(30, 41, 59, 0.08);
+}
+
+.text-gradient-navy {
+  @apply bg-clip-text text-transparent bg-gradient-to-br from-brand-navy to-brand-navy/60;
 }

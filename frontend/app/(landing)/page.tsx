@@ -14,97 +14,122 @@ export default function LandingPage() {
 
     return (
         <div className="min-h-screen bg-background text-foreground font-sans selection:bg-brand-teal selection:text-white overflow-x-hidden">
-            {/* Solar Theme Infrastructure Background */}
-            <div className="fixed inset-0 z-0 pointer-events-none">
-                <div className="absolute inset-0 bg-background" />
-                <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]"
-                    style={{
-                        backgroundImage: `linear-gradient(var(--card-border) 1px, transparent 1px), linear-gradient(90deg, var(--card-border) 1px, transparent 1px)`,
-                        backgroundSize: '40px 40px'
-                    }}
-                />
-                <DataParticles />
-            </div>
-
-            {/* Navbar */}
-            <nav className="fixed top-0 w-full z-50 border-b border-card-border bg-white/70 dark:bg-background/70 backdrop-blur-xl transition-colors duration-500">
-                <div className="max-w-7xl mx-auto flex items-center justify-between px-8 h-20">
-                    <Link href="/" className="flex items-center gap-2 group">
-                        <div className="relative w-8 h-8 rounded-lg overflow-hidden border border-card-border shadow-sm transition-transform group-hover:scale-110">
-                            <Image
-                                src="/logo.jpg"
-                                alt="CrowdState AI Logo"
-                                fill
-                                className="object-cover"
-                            />
-                        </div>
-                        <span className="font-bold text-xl tracking-tighter text-foreground group-hover:text-brand-teal transition-colors">CrowdState<span className="text-brand-teal">AI</span></span>
-                    </Link>
-                    <div className="hidden md:flex items-center gap-12 font-bold text-[11px] uppercase tracking-widest opacity-40">
-                        <a href="#methodology" className="hover:text-brand-teal transition-colors">Methodology</a>
-                        <a href="#impact" className="hover:text-brand-teal transition-colors">Operational Impact</a>
-                        <a href="#trust" className="hover:text-brand-teal transition-colors">Forensic Trust</a>
+            {/* Hero Section: Murph-Inspired Split-Pane */}
+            <section className="relative min-h-screen flex items-center px-8 pt-20 overflow-hidden bg-white">
+                {/* Visual Engine: Blueprint Background & Particles */}
+                <div className="absolute inset-0 z-0">
+                    <div className="absolute inset-0 select-none pointer-events-none opacity-40 grayscale contrast-75 brightness-110">
+                        <Image
+                            src="/hero-img.png"
+                            alt="Transit Hub Blueprint"
+                            fill
+                            priority
+                            className="object-cover"
+                        />
+                        {/* Light blueprint wash overlay */}
+                        <div className="absolute inset-0 bg-[#F8FAFC]/90 mix-blend-screen" />
                     </div>
-                    <div className="flex items-center gap-6">
-                        <ThemeToggle />
-                        <Link
-                            href="/dashboard"
-                            className="px-6 py-2.5 bg-brand-navy text-white text-xs font-bold uppercase tracking-widest rounded transition-all hover:bg-brand-teal hover:scale-105 active:scale-95"
-                        >
-                            Launch Mission Control
-                        </Link>
+
+                    {/* Electric Teal Particle System Overlay */}
+                    <div className="absolute inset-0 z-10 pointer-events-none">
+                        <DataParticles color="#14B8A6" quantity={120} speed={0.4} />
                     </div>
                 </div>
-            </nav>
 
-            {/* Hero Section */}
-            <section className="relative pt-48 pb-32 px-8 overflow-hidden">
-                {/* Hero Background Image - Solar Blend */}
-                <div className="absolute inset-0 z-0 select-none">
-                    <Image
-                        src="/bg-img.jpg"
-                        alt="Infrastructure Backdrop"
-                        fill
-                        priority
-                        className="object-cover opacity-[0.07] grayscale contrast-125"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-b from-white via-white/40 to-white" />
-                </div>
-
-                <motion.div style={{ y: y1 }} className="max-w-6xl mx-auto text-center relative z-10">
+                {/* Privacy Seal: Top Center Badge */}
+                <div className="absolute top-32 left-1/2 -translate-x-1/2 z-50">
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-brand-teal/5 border border-brand-teal/20 mb-12 shadow-sm"
+                        className="inline-flex items-center gap-3 px-6 py-2 rounded-full glass-premium border border-gray-200 shadow-sm"
                     >
-                        <ShieldCheck size={16} className="text-brand-teal" />
-                        <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-brand-teal">
-                            Technexis Forensic Protocol v1.02
+                        <Lock size={14} className="text-blue-600" />
+                        <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400 font-sans">
+                            ZERO-PII | ANONYMIZED BEHAVIORAL VECTORS ONLY
                         </span>
                     </motion.div>
+                </div>
 
-                    <h1 className="hero-title text-6xl md:text-9xl mb-8 tracking-tighter text-brand-navy">
-                        We don't predict crowds.<br />
-                        <span className="text-brand-teal italic">We predict stability.</span>
-                    </h1>
+                <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-12 items-center relative z-20">
+                    {/* Left Side: Narrative Weight (60%) */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        className="pr-12"
+                    >
+                        <h1 className="text-6xl md:text-8xl font-black mb-8 tracking-tighter text-black leading-[0.95] font-sans">
+                            We don't predict crowds.<br />
+                            <span className="text-[#F97316] italic">We predict stability.</span>
+                        </h1>
+                        <p className="text-xl md:text-2xl text-gray-400 mb-12 font-medium leading-relaxed max-w-xl font-sans">
+                            The world's first tri-axial state engine for forensic crowd dynamics and sensory-weighted path optimization.
+                        </p>
+                        <div className="flex flex-col sm:flex-row items-center gap-6">
+                            <Link
+                                href="/dashboard"
+                                className="w-full sm:w-auto px-10 py-5 bg-[#F97316] text-white font-bold rounded-lg hover:brightness-110 transition-all shadow-xl shadow-orange-500/20 flex items-center justify-center gap-2 group"
+                            >
+                                ENTER DECISION HUB
+                                <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                            </Link>
+                            <button className="w-full sm:w-auto px-10 py-5 bg-transparent border border-black/10 text-black font-bold rounded-lg hover:bg-black/5 transition-all">
+                                WATCH DEMO
+                            </button>
+                        </div>
+                    </motion.div>
 
-                    <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-16 font-medium leading-relaxed">
-                        Forensic predictability for urban high-density hubs. Derive the 3-state vector $(\rho, \Sigma, \Delta)$ in real-time to mitigate systemic risk before it escalates.
-                    </p>
+                    {/* Right Side: Live Data Card (40%) */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95, x: 30 }}
+                        animate={{ opacity: 1, scale: 1, x: 0 }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        className="relative"
+                    >
+                        {/* Volatility Ripple positioned behind the card */}
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] pointer-events-none z-[-1]">
+                            <div className="absolute inset-0 bg-[#F97316]/5 rounded-full animate-ripple border border-[#F97316]/20" />
+                            <div className="absolute inset-0 bg-[#F97316]/10 rounded-full animate-ripple border border-[#F97316]/10 delay-700" />
+                        </div>
 
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
-                        <Link
-                            href="/dashboard"
-                            className="group relative flex items-center gap-3 px-10 py-5 bg-brand-navy text-white font-bold rounded-lg hover:bg-brand-teal transition-all shadow-lg hover:scale-105 active:scale-95"
-                        >
-                            LAUNCH MISSION CONTROL
-                            <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                        </Link>
-                        <button className="px-10 py-5 bg-white border border-card-border text-brand-navy font-bold rounded-lg hover:bg-gray-50 transition-all hover:scale-105 active:scale-95">
-                            REQUEST TECHNICAL DEEPDIVE
-                        </button>
-                    </div>
-                </motion.div>
+                        <div className="bg-white/60 backdrop-blur-md p-10 rounded-[32px] shadow-2xl border border-white/40 overflow-hidden relative">
+                            {/* Card Header */}
+                            <div className="flex items-center justify-between mb-16">
+                                <div className="flex flex-col gap-1">
+                                    <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-black">Live Network Status</h3>
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-2 h-2 bg-[#4ADE80] rounded-full animate-pulse shadow-[0_0_8px_#4ADE80]" />
+                                        <span className="text-[10px] font-bold text-[#4ADE80] uppercase tracking-widest leading-none">FORENSIC V1.02 ACTIVE</span>
+                                    </div>
+                                </div>
+                                <Activity size={20} className="text-gray-300" />
+                            </div>
+
+                            {/* Metrics Display */}
+                            <div className="flex flex-col gap-10 mb-16">
+                                <div className="space-y-4">
+                                    <span className="text-[11px] font-bold text-gray-400 uppercase tracking-[0.3em]">Human Density (ρ)</span>
+                                    <div className="text-8xl font-mono font-bold text-[#4ADE80] tracking-tighter drop-shadow-[0_0_20px_rgba(74,222,128,0.4)]">
+                                        0.15
+                                    </div>
+                                </div>
+                                <div className="space-y-4">
+                                    <span className="text-[11px] font-bold text-gray-400 uppercase tracking-[0.3em]">Volatility Index (Δ)</span>
+                                    <div className="text-8xl font-mono font-bold text-[#4ADE80] tracking-tighter drop-shadow-[0_0_20px_rgba(74,222,128,0.4)]">
+                                        0.08
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Bottom Teal Bar */}
+                            <div className="absolute bottom-0 left-0 right-0 py-5 bg-[#14B8A6] text-white flex justify-center items-center gap-4 text-[11px] font-bold uppercase tracking-[0.3em]">
+                                <span>• LIVE NOW</span>
+                                <span className="opacity-40">|</span>
+                                <span>FORRENSIC V1.02</span>
+                            </div>
+                        </div>
+                    </motion.div>
+                </div>
             </section>
 
             {/* Impact Section: JetBrains Mono Numbers */}
