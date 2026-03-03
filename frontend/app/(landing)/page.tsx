@@ -102,64 +102,75 @@ export default function LandingPage() {
                             transition={{ duration: 0.8, delay: 0.2 }}
                             className="glass-premium p-10 rounded-[32px] relative overflow-hidden"
                         >
-                            <div className="flex items-center gap-4 mb-10 text-white">
-                                <div className="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center border border-orange-500/30">
-                                    <ShieldAlert size={24} className="text-[#F97316]" />
-                                </div>
-                                <div>
-                                    <h3 className="text-lg font-bold">Predictive Scan</h3>
-                                    <p className="text-[10px] text-white/40 uppercase tracking-widest font-bold">State Synchronizer</p>
-                                </div>
-                            </div>
-
-                            <div className="space-y-8 mb-10">
-                                <div className="space-y-2">
-                                    <div className="flex justify-between text-[10px] font-bold uppercase tracking-widest text-white/40">
-                                        <span>Network Stability</span>
-                                        <span className="text-orange-500">92%</span>
+                            {/* Card Content Top Section */}
+                            <div className="p-10">
+                                <div className="flex items-center gap-4 mb-10 text-white">
+                                    <div className="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center border border-orange-500/30">
+                                        <ShieldAlert size={24} className="text-[#F97316]" />
                                     </div>
-                                    <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
-                                        <div className="h-full w-[92%] bg-orange-500 rounded-full shadow-[0_0_10px_#F97316]" />
+                                    <div className="flex flex-col">
+                                        <h3 className="text-lg font-bold">Predictive Scan</h3>
+                                        <p className="text-[10px] text-white/40 uppercase tracking-widest font-bold">State Synchronizer</p>
                                     </div>
                                 </div>
+
+                                <div className="space-y-8 mb-10">
+                                    <div className="space-y-2">
+                                        <div className="flex justify-between text-[10px] font-bold uppercase tracking-widest text-white/40">
+                                            <span>Network Stability</span>
+                                            <span className="text-[#F97316]">92%</span>
+                                        </div>
+                                        <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden border border-white/5">
+                                            <motion.div
+                                                initial={{ width: 0 }}
+                                                animate={{ width: "92%" }}
+                                                transition={{ duration: 1.5, delay: 0.5 }}
+                                                className="h-full bg-[#F97316] shadow-[0_0_12px_rgba(249,115,22,0.6)]"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="grid grid-cols-3 gap-4">
+                                        {[
+                                            { label: "Nodes", value: "12.4k", color: "text-white" },
+                                            { label: "Latency", value: "0.8ms", color: "text-white" },
+                                            { label: "Up-time", value: "99.9%", color: "text-white" }
+                                        ].map((stat, i) => (
+                                            <div key={i} className="space-y-1">
+                                                <p className="text-[9px] uppercase tracking-widest text-white/30 font-bold leading-none">{stat.label}</p>
+                                                <p className={`text-xl font-black ${stat.color} leading-none pt-1`}>{stat.value}</p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Status Pills */}
+                                <div className="flex gap-3 mt-10">
+                                    <div className="px-3 py-1 rounded-full bg-green-500/10 border border-green-500/30 text-[9px] font-bold text-green-500 uppercase tracking-widest">Live Now</div>
+                                    <div className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 uppercase tracking-widest">Forensic.V2</div>
+                                    <div className="px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/30 text-[9px] font-bold text-orange-500 uppercase tracking-widest">AI Powered</div>
+                                </div>
                             </div>
 
-                            <div className="grid grid-cols-3 gap-6 pt-6 border-t border-white/5">
-                                <div className="space-y-1">
-                                    <p className="text-2xl font-black text-white leading-none">12.4k</p>
-                                    <p className="text-[9px] font-bold uppercase tracking-widest text-white/30 leading-none">Nodes</p>
+                            {/* Card Secondary Section: Layered Footer */}
+                            <div className="glass-secondary p-8 px-10">
+                                <p className="text-[9px] uppercase tracking-widest text-white/30 font-bold mb-4">Built For & Trusted By</p>
+                                <div className="flex items-center justify-between gap-6 opacity-40 grayscale contrast-125">
+                                    <div className="flex items-center gap-2">
+                                        <Lock size={12} />
+                                        <span className="text-[10px] font-bold tracking-tighter">FIN-SEC ALLIANCE</span>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <Activity size={12} />
+                                        <span className="text-[10px] font-bold tracking-tighter">BIO-OPS GLOBAL</span>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-3 h-3 border border-current rounded-sm flex items-center justify-center p-0.5">
+                                            <div className="w-full h-full bg-current rounded-sm" />
+                                        </div>
+                                        <span className="text-[10px] font-bold tracking-tighter">TECH-NEXIS</span>
+                                    </div>
                                 </div>
-                                <div className="space-y-1">
-                                    <p className="text-2xl font-black text-white leading-none">9ms</p>
-                                    <p className="text-[9px] font-bold uppercase tracking-widest text-white/30 leading-none">Latency</p>
-                                </div>
-                                <div className="space-y-1">
-                                    <p className="text-2xl font-black text-white leading-none">99%</p>
-                                    <p className="text-[9px] font-bold uppercase tracking-widest text-white/30 leading-none">Up-time</p>
-                                </div>
-                            </div>
-
-                            {/* Status Pills */}
-                            <div className="flex gap-3 mt-10">
-                                <div className="px-3 py-1 rounded-full bg-green-500/10 border border-green-500/30 text-[9px] font-bold text-green-500 uppercase tracking-widest">Live Now</div>
-                                <div className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 uppercase tracking-widest">Forensic.V2</div>
-                                <div className="px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/30 text-[9px] font-bold text-orange-500 uppercase tracking-widest">AI Powered</div>
-                            </div>
-                        </motion.div>
-
-                        {/* Trusted Banner */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 0.4 }}
-                            className="bg-white/[0.03] border border-white/10 rounded-[28px] p-8"
-                        >
-                            <p className="text-[10px] font-bold text-white/30 uppercase tracking-[0.2em] mb-6">Built For & Trusted By</p>
-                            <div className="flex items-center gap-10 opacity-40 grayscale contrast-[1.5] text-white">
-                                <Activity size={20} />
-                                <Lock size={20} />
-                                <ShieldAlert size={20} />
-                                <div className="text-[14px] font-bold tracking-tighter">STATE_OS</div>
                             </div>
                         </motion.div>
                     </div>

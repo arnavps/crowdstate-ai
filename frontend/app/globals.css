@@ -109,7 +109,11 @@ body {
 }
 
 .glass-premium {
-  @apply bg-black/40 backdrop-blur-2xl border border-white/10 shadow-2xl;
+  @apply bg-black/70 backdrop-blur-2xl border border-white/10 shadow-2xl;
+}
+
+.glass-secondary {
+  @apply bg-white/5 backdrop-blur-xl border-t border-white/10;
 }
 
 /* Pill Navigation */
