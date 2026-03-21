@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 from redis import Redis
-from api import density_router
+from api import density_router, sensory_router
 
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
@@ -38,6 +38,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 app.include_router(density_router)
+app.include_router(sensory_router)
 
 
 @app.get("/health")
