@@ -16,3 +16,5 @@ pandas
 numpy
 opencv-python
 Faker
+python-multipart
+pytest
