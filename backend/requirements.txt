@@ -18,3 +18,4 @@ opencv-python
 Faker
 python-multipart
 pytest
+tensorflow
