@@ -1,3 +1,52 @@
+# CrowdState AI Monorepo
+
+This repository contains the full-stack CrowdState AI development environment.
+
+## Project Structure
+
+```
+crowdstate-ai/
+├── frontend/          # React + TypeScript + Vite + Tailwind
+├── backend/           # FastAPI + PostgreSQL + Redis
+├── shared/            # Common types and constants
+├── nginx/             # Nginx config for production
+├── docker-compose.yml
+└── .env.example
+```
+
+## Quick Start
+
+1. Copy environment variables:
+   - `cp .env.example .env`
+2. Start all services:
+   - `docker compose up --build`
+3. Open:
+   - Frontend: `http://localhost:5173`
+   - Backend docs: `http://localhost:8000/docs`
+   - Nginx proxy: `http://localhost:8080`
+
+## Services
+
+- `frontend`: Vite dev server with hot reload
+- `backend`: FastAPI app (Python 3.11 + Uvicorn)
+- `postgres`: PostgreSQL with TimescaleDB extension
+- `redis`: Redis for cache/queues
+- `nginx`: Production-style reverse proxy
+
+## Backend Notes
+
+- SQLAlchemy ORM configured via `DATABASE_URL`
+- Alembic included for migrations
+- Health check endpoint:
+  - `GET /health`
+
+## Frontend Notes
+
+- React 18 + TypeScript
+- Tailwind CSS and Recharts included
+- React Router configured
+- Axios client included
+- Native WebSocket client example included
 # CrowdState AI 🛰️
 
 **CrowdState AI** is a tri-axial crowd prediction and sensory-weighted navigation engine designed for high-density urban environments. It uses computer vision, acoustic analysis, and deep learning to model urban dynamics and provide "Calm Path" routing (AuraPath).

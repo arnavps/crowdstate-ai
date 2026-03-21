@@ -1,4 +1,12 @@
 fastapi
+uvicorn[standard]
+sqlalchemy
+alembic
+psycopg[binary]
+redis
+python-dotenv
+pydantic-settings
+fastapi
 uvicorn
 ultralytics
 librosa
