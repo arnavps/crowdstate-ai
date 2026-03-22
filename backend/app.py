@@ -7,6 +7,7 @@ from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 from redis import Redis
 from api import density_router, sensory_router, state_router, volatility_router
+from api.upload import router as upload_router
 from api.websocket import router as websocket_router
 
 DATABASE_URL = os.getenv(
@@ -42,6 +43,7 @@ app.include_router(density_router)
 app.include_router(sensory_router)
 app.include_router(state_router)
 app.include_router(volatility_router)
+app.include_router(upload_router)
 app.include_router(websocket_router)
 
 
