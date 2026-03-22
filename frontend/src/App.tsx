@@ -1,76 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import DashboardLayout from "./components/Layout/DashboardLayout";
+import Overview from "./pages/Overview";
 import AuraPathMap from "./pages/AuraPathMap";
+import Analytics from "./pages/Analytics";
 
 // View components
-function Overview() {
-  return (
-    <div className="space-y-6">
-      <h1 className="text-3xl font-helvetica font-bold text-[#0F172A]">
-        Overview
-      </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {/* Metric Cards */}
-        <MetricCard label="Density (ρ)" value="0.42" status="normal" />
-        <MetricCard label="Sensory (Σ)" value="0.38" status="normal" />
-        <MetricCard label="Volatility (Δ)" value="0.25" status="low" />
-        <MetricCard label="Safety Score" value="87" unit="/100" status="good" />
-      </div>
-    </div>
-  );
-}
-
-function MetricCard({
-  label,
-  value,
-  unit = "",
-  status,
-}: {
-  label: string;
-  value: string;
-  unit?: string;
-  status: "normal" | "low" | "good" | "warning" | "critical";
-}) {
-  const statusColors = {
-    normal: "bg-white",
-    low: "bg-white",
-    good: "bg-[#F0FDF4]",
-    warning: "bg-[#FFFBEB]",
-    critical: "bg-[#FEF2F2]",
-  };
-
-  return (
-    <div className={`${statusColors[status]} rounded-xl p-6 shadow-sm border border-[#E2E8F0]`}>
-      <p className="text-xs font-bold uppercase tracking-wider text-[#64748B] font-helvetica mb-2">
-        {label}
-      </p>
-      <div className="flex items-baseline gap-1">
-        <span className="text-5xl font-helvetica font-bold text-[#0F172A]">
-          {value}
-        </span>
-        {unit && (
-          <span className="text-sm text-[#64748B] font-garamond">{unit}</span>
-        )}
-      </div>
-    </div>
-  );
-}
-
-function Analytics() {
-  return (
-    <div className="space-y-6">
-      <h1 className="text-3xl font-helvetica font-bold text-[#0F172A]">
-        Analytics
-      </h1>
-      <div className="bg-white rounded-xl shadow-sm border border-[#E2E8F0] p-8">
-        <p className="text-[#64748B] font-garamond">
-          Historical analytics and trends will be displayed here
-        </p>
-      </div>
-    </div>
-  );
-}
-
 function SystemHealth() {
   return (
     <div className="space-y-6">
