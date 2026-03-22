@@ -2,11 +2,79 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body,
-#root {
-  width: 100%;
-  min-height: 100%;
-  margin: 0;
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+/* Font imports */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@layer base {
+  html,
+  body,
+  #root {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+  }
+
+  body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #F8FAFC;
+    color: #0F172A;
+  }
+
+  /* Garamond fallback for Apple Garamond */
+  .font-garamond {
+    font-family: 'Apple Garamond', 'EB Garamond', Garamond, 'Times New Roman', serif;
+  }
+
+  /* Helvetica for headers */
+  .font-helvetica {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+  }
+
+  /* JetBrains Mono for metrics */
+  .font-mono {
+    font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+  }
+}
+
+@layer components {
+  /* Card styles */
+  .card {
+    @apply bg-white rounded-xl shadow-card border border-[#E2E8F0];
+  }
+
+  /* Metric display styles */
+  .metric-value {
+    @apply text-metric-xl font-helvetica font-bold text-[#0F172A];
+  }
+
+  .metric-label {
+    @apply text-label font-bold uppercase tracking-wider text-[#64748B];
+  }
+
+  /* Navigation active state */
+  .nav-active {
+    @apply bg-white text-brand-teal shadow-sm border border-[#E2E8F0];
+  }
+
+  .nav-inactive {
+    @apply text-[#64748B] hover:bg-white hover:text-[#0F172A];
+  }
+}
+
+@layer utilities {
+  /* Status colors */
+  .status-safe {
+    @apply text-safe-green bg-safe-green/10;
+  }
+
+  .status-caution {
+    @apply text-caution-yellow bg-caution-yellow/10;
+  }
+
+  .status-danger {
+    @apply text-danger-red bg-danger-red/10;
+  }
 }

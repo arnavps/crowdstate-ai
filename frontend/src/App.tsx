@@ -1,103 +1,177 @@
-import { useEffect, useMemo, useState } from "react";
-import { Link, Route, Routes } from "react-router-dom";
-import axios from "axios";
-import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import DashboardLayout from "./components/Layout/DashboardLayout";
 
-type HealthResponse = {
-  status: string;
-  service: string;
-};
-
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "http://localhost:8000";
-const WS_URL = import.meta.env.VITE_WS_URL ?? "ws://localhost:8000/ws";
-
-function DashboardPage() {
-  const [health, setHealth] = useState<HealthResponse | null>(null);
-  const [wsStatus, setWsStatus] = useState("disconnected");
-
-  useEffect(() => {
-    axios
-      .get<HealthResponse>(`${API_BASE_URL}/health`)
-      .then((res) => setHealth(res.data))
-      .catch(() => setHealth({ status: "unavailable", service: "backend" }));
-  }, []);
-
-  useEffect(() => {
-    const ws = new WebSocket(WS_URL);
-    ws.onopen = () => setWsStatus("connected");
-    ws.onclose = () => setWsStatus("disconnected");
-    ws.onerror = () => setWsStatus("error");
-    return () => ws.close();
-  }, []);
-
-  const mockSeries = useMemo(
-    () => [
-      { minute: "09:00", sentiment: 42 },
-      { minute: "09:05", sentiment: 55 },
-      { minute: "09:10", sentiment: 61 },
-      { minute: "09:15", sentiment: 58 },
-      { minute: "09:20", sentiment: 69 }
-    ],
-    []
-  );
-
+// View components
+function Overview() {
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-semibold">CrowdState AI Mission Control</h1>
-      <div className="grid gap-4 md:grid-cols-2">
-        <div className="rounded-xl border border-slate-800 bg-slate-900 p-4">
-          <h2 className="mb-2 text-lg font-medium">API Health</h2>
-          <p className="text-sm text-slate-300">
-            {health ? `${health.service}: ${health.status}` : "Checking backend..."}
-          </p>
-        </div>
-        <div className="rounded-xl border border-slate-800 bg-slate-900 p-4">
-          <h2 className="mb-2 text-lg font-medium">Realtime Channel</h2>
-          <p className="text-sm text-slate-300">WebSocket status: {wsStatus}</p>
-        </div>
-      </div>
-
-      <div className="h-72 rounded-xl border border-slate-800 bg-slate-900 p-4">
-        <h2 className="mb-4 text-lg font-medium">Live Sentiment Trend</h2>
-        <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={mockSeries}>
-            <XAxis dataKey="minute" stroke="#94a3b8" />
-            <YAxis stroke="#94a3b8" />
-            <Tooltip />
-            <Line type="monotone" dataKey="sentiment" stroke="#22d3ee" strokeWidth={2} />
-          </LineChart>
-        </ResponsiveContainer>
+      <h1 className="text-3xl font-helvetica font-bold text-[#0F172A]">
+        Overview
+      </h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Metric Cards */}
+        <MetricCard label="Density (ρ)" value="0.42" status="normal" />
+        <MetricCard label="Sensory (Σ)" value="0.38" status="normal" />
+        <MetricCard label="Volatility (Δ)" value="0.25" status="low" />
+        <MetricCard label="Safety Score" value="87" unit="/100" status="good" />
       </div>
     </div>
   );
 }
 
-function AboutPage() {
+function MetricCard({
+  label,
+  value,
+  unit = "",
+  status,
+}: {
+  label: string;
+  value: string;
+  unit?: string;
+  status: "normal" | "low" | "good" | "warning" | "critical";
+}) {
+  const statusColors = {
+    normal: "bg-white",
+    low: "bg-white",
+    good: "bg-[#F0FDF4]",
+    warning: "bg-[#FFFBEB]",
+    critical: "bg-[#FEF2F2]",
+  };
+
   return (
-    <div className="space-y-3">
-      <h1 className="text-3xl font-semibold">About CrowdState AI</h1>
-      <p className="text-slate-300">
-        This starter project provides a scalable baseline for real-time market intelligence.
+    <div className={`${statusColors[status]} rounded-xl p-6 shadow-sm border border-[#E2E8F0]`}>
+      <p className="text-xs font-bold uppercase tracking-wider text-[#64748B] font-helvetica mb-2">
+        {label}
       </p>
+      <div className="flex items-baseline gap-1">
+        <span className="text-5xl font-helvetica font-bold text-[#0F172A]">
+          {value}
+        </span>
+        {unit && (
+          <span className="text-sm text-[#64748B] font-garamond">{unit}</span>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function AuraPathMap() {
+  return (
+    <div className="space-y-6">
+      <h1 className="text-3xl font-helvetica font-bold text-[#0F172A]">
+        AuraPath Map
+      </h1>
+      <div className="bg-white rounded-xl shadow-sm border border-[#E2E8F0] p-8 h-[500px] flex items-center justify-center">
+        <p className="text-[#64748B] font-garamond">
+          AuraPath navigation map will be displayed here
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function Analytics() {
+  return (
+    <div className="space-y-6">
+      <h1 className="text-3xl font-helvetica font-bold text-[#0F172A]">
+        Analytics
+      </h1>
+      <div className="bg-white rounded-xl shadow-sm border border-[#E2E8F0] p-8">
+        <p className="text-[#64748B] font-garamond">
+          Historical analytics and trends will be displayed here
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function SystemHealth() {
+  return (
+    <div className="space-y-6">
+      <h1 className="text-3xl font-helvetica font-bold text-[#0F172A]">
+        System Health
+      </h1>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <HealthCard service="API" status="operational" latency="24ms" />
+        <HealthCard service="WebSocket" status="operational" latency="12ms" />
+        <HealthCard service="AI Models" status="operational" latency="156ms" />
+      </div>
+    </div>
+  );
+}
+
+function HealthCard({
+  service,
+  status,
+  latency,
+}: {
+  service: string;
+  status: "operational" | "degraded" | "down";
+  latency: string;
+}) {
+  const statusColors = {
+    operational: "bg-[#10B981]",
+    degraded: "bg-[#F59E0B]",
+    down: "bg-[#EF4444]",
+  };
+
+  return (
+    <div className="bg-white rounded-xl p-6 shadow-sm border border-[#E2E8F0]">
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="font-helvetica font-bold text-[#0F172A]">{service}</h3>
+        <div className={`w-2 h-2 rounded-full ${statusColors[status]}`}></div>
+      </div>
+      <div className="space-y-2">
+        <div className="flex justify-between text-sm">
+          <span className="text-[#64748B] font-garamond">Status</span>
+          <span className="font-bold text-[#0F172A] font-helvetica uppercase">
+            {status}
+          </span>
+        </div>
+        <div className="flex justify-between text-sm">
+          <span className="text-[#64748B] font-garamond">Latency</span>
+          <span className="font-bold text-[#0F172A] font-helvetica">
+            {latency}
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Privacy() {
+  return (
+    <div className="space-y-6">
+      <h1 className="text-3xl font-helvetica font-bold text-[#0F172A]">
+        Privacy
+      </h1>
+      <div className="bg-white rounded-xl shadow-sm border border-[#E2E8F0] p-8">
+        <h2 className="text-xl font-helvetica font-bold text-[#0F172A] mb-4">
+          Data Protection
+        </h2>
+        <p className="text-[#64748B] font-garamond leading-relaxed">
+          CrowdState AI is committed to protecting personal privacy. All video
+          and audio data is processed locally and in real-time. No personally
+          identifiable information is stored. Aggregate metrics are anonymized
+          and retained for up to 7 days for operational purposes.
+        </p>
+      </div>
     </div>
   );
 }
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-slate-950 px-6 py-8 text-slate-100">
-      <nav className="mb-8 flex gap-4 text-sm">
-        <Link className="rounded bg-slate-800 px-3 py-2 hover:bg-slate-700" to="/">
-          Dashboard
-        </Link>
-        <Link className="rounded bg-slate-800 px-3 py-2 hover:bg-slate-700" to="/about">
-          About
-        </Link>
-      </nav>
+    <BrowserRouter>
       <Routes>
-        <Route path="/" element={<DashboardPage />} />
-        <Route path="/about" element={<AboutPage />} />
+        <Route path="/" element={<DashboardLayout />}>
+          <Route index element={<Overview />} />
+          <Route path="aurapath" element={<AuraPathMap />} />
+          <Route path="analytics" element={<Analytics />} />
+          <Route path="health" element={<SystemHealth />} />
+          <Route path="privacy" element={<Privacy />} />
+        </Route>
       </Routes>
-    </div>
+    </BrowserRouter>
   );
 }
