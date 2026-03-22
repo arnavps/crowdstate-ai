@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import DashboardLayout from "./components/Layout/DashboardLayout";
+import AuraPathMap from "./pages/AuraPathMap";
 
 // View components
 function Overview() {
@@ -50,21 +51,6 @@ function MetricCard({
         {unit && (
           <span className="text-sm text-[#64748B] font-garamond">{unit}</span>
         )}
-      </div>
-    </div>
-  );
-}
-
-function AuraPathMap() {
-  return (
-    <div className="space-y-6">
-      <h1 className="text-3xl font-helvetica font-bold text-[#0F172A]">
-        AuraPath Map
-      </h1>
-      <div className="bg-white rounded-xl shadow-sm border border-[#E2E8F0] p-8 h-[500px] flex items-center justify-center">
-        <p className="text-[#64748B] font-garamond">
-          AuraPath navigation map will be displayed here
-        </p>
       </div>
     </div>
   );
