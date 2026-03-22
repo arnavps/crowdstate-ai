@@ -19,3 +19,5 @@ Faker
 python-multipart
 pytest
 tensorflow
+celery
+kombu
