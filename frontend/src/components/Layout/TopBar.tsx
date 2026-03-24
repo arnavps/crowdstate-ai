@@ -72,13 +72,12 @@ export default function TopBar({
 
         {/* WebSocket Status Indicator */}
         <div
-          className={`flex items-center gap-2 px-3 py-1.5 rounded-full border ${
-            wsStatus === "connected"
+          className={`flex items-center gap-2 px-3 py-1.5 rounded-full border ${wsStatus === "connected"
               ? "bg-[#F0FDF4] border-[#10B981]/20"
               : wsStatus === "error"
-              ? "bg-[#FEF2F2] border-[#EF4444]/20"
-              : "bg-[#FFFBEB] border-[#F59E0B]/20"
-          }`}
+                ? "bg-[#FEF2F2] border-[#EF4444]/20"
+                : "bg-[#FFFBEB] border-[#F59E0B]/20"
+            }`}
         >
           <Wifi
             size={14}
@@ -86,18 +85,17 @@ export default function TopBar({
               wsStatus === "connected"
                 ? "text-[#10B981]"
                 : wsStatus === "error"
-                ? "text-[#EF4444]"
-                : "text-[#F59E0B]"
+                  ? "text-[#EF4444]"
+                  : "text-[#F59E0B]"
             }
           />
           <span
-            className={`text-xs font-bold uppercase tracking-wider font-helvetica ${
-              wsStatus === "connected"
+            className={`text-xs font-bold uppercase tracking-wider font-helvetica ${wsStatus === "connected"
                 ? "text-[#10B981]"
                 : wsStatus === "error"
-                ? "text-[#EF4444]"
-                : "text-[#F59E0B]"
-            }`}
+                  ? "text-[#EF4444]"
+                  : "text-[#F59E0B]"
+              }`}
           >
             {wsStatus === "connected" ? "Live" : wsStatus === "error" ? "Error" : "Offline"}
           </span>
@@ -116,7 +114,7 @@ export default function TopBar({
             <Sun size={20} className="text-[#F59E0B]" />
           ) : (
             <Moon size={20} className="text-[#64748B]" />
-          )
+          )}
         </button>
 
         {/* User Profile */}
