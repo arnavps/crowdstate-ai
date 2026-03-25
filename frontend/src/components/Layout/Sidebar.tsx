@@ -46,13 +46,15 @@ export default function Sidebar() {
               }`
             }
           >
-            <item.icon
-              size={18}
-              className={({ isActive }: { isActive: boolean }) =>
-                isActive ? "text-[#0D9488]" : "text-[#94A3B8]"
-              }
-            />
-            <span className="font-helvetica">{item.name}</span>
+            {({ isActive }) => (
+              <>
+                <item.icon
+                  size={18}
+                  className={isActive ? "text-[#0D9488]" : "text-[#94A3B8]"}
+                />
+                <span className="font-helvetica">{item.name}</span>
+              </>
+            )}
           </NavLink>
         ))}
       </nav>
