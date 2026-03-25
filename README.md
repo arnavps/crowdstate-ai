@@ -48,7 +48,7 @@ crowdstate-ai/
 - Axios client included
 - Native WebSocket client example included
 # CrowdState AI 🛰️
-
+_________________
 **CrowdState AI** is a tri-axial crowd prediction and sensory-weighted navigation engine designed for high-density urban environments. It uses computer vision, acoustic analysis, and deep learning to model urban dynamics and provide "Calm Path" routing (AuraPath).
 
 ## 🚀 Key Features
